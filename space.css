@@ -1,29 +1,29 @@
-body{
-    font-family: 'Courier New', Courier, monospace;
-    text-align: center;
+body {
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
 }
 
-#board{
-    background-color: black;
+#board {
+  background-color: black;
 }
 #restart {
-    display: block;
-    margin:0 auto;
-    margin-top: 10px;
-    background-color: grey;
-    border: 2px solid transparent;
-    box-sizing: border-box;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 700;
-    line-height: 1;
-    padding: 15px 25px;
-    text-align: center;
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  background-color: grey;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 15px 25px;
+  text-align: center;
 }
 html {
-    background-image: url(space.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    min-height: 100vh;
+  background-image: url(img/space.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
 }
