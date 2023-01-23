@@ -8,7 +8,7 @@ let boardWidth = tileSize * columns; // 32 * 16
 let boardHeight = tileSize * rows; // 32 * 16
 let context;
 
-//button
+//restart button
 document
   .getElementById("restart")
   .addEventListener("click", () => window.location.reload());
