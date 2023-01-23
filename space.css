@@ -44,3 +44,52 @@ h1 {
   line-height: 1;
   padding: 15px 25px;
 }
+
+.game-over {
+  width: 512px;
+  min-height: 512px;
+  margin: 0 auto;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.game-over h1 {
+  background: none;
+  color: white;
+  font-size: 3rem;
+}
+
+.game-over div {
+  animation: breathing 1.5s ease-out infinite normal;
+}
+
+.game-over p {
+  color: white;
+  margin-top: 0.5rem;
+  font-size: 2rem;
+}
+
+.game-over p span {
+  font-size: 2rem;
+}
+
+@keyframes breathing {
+  0% {
+    transform: scale(0.9);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0.9);
+  }
+}
+
+.hide {
+  display: none;
+}
