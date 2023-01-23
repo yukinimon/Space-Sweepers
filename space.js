@@ -25,6 +25,7 @@ let ship = {
   width: shipWidth,
   height: shipHeight,
 };
+let life = 3;
 
 let shipImg;
 let shipVelocityX = tileSize; //ship moving speed
@@ -36,6 +37,7 @@ let alienHeight = tileSize;
 let alienX = tileSize;
 let alienY = tileSize;
 let alienImg;
+let alienShootingTimer = 100;
 
 let alienRows = 2;
 let alienColumns = 3;
@@ -45,6 +47,9 @@ let alienVelocityX = 1; //alien moving speed
 //bullets
 let bulletArray = [];
 let bulletVelocityY = -10; //bullet moving speed
+
+// alien bullets
+let alienBulletArray = [];
 
 let score = 0;
 let gameOver = false;
@@ -107,6 +112,37 @@ function update() {
 
       if (alien.y >= ship.y) {
         gameOver = true;
+        setGameOverView();
+      }
+    } else {
+      alienArray.splice(i, 1);
+    }
+  }
+
+  // make random alien shoot
+  alienShootingTimer--;
+  if (alienShootingTimer <= 0) {
+    alienShootingTimer = 100;
+    const alien = alienArray[Math.floor(Math.random() * alienArray.length)];
+    alienShoot(alien);
+  }
+
+  // alien bullet
+  for (let i = 0; i < alienBulletArray.length; i++) {
+    let bullet = alienBulletArray[i];
+    bullet.y -= bulletVelocityY + 5;
+    context.fillStyle = "red";
+    context.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+
+    //bullet collision with ship
+    if (!bullet.used && detectCollision(bullet, ship)) {
+      bullet.used = true;
+      life -= 1;
+
+      if (life <= 0) {
+        gameOver = true;
+        setGameOverView();
+        return;
       }
     }
   }
@@ -137,6 +173,12 @@ function update() {
   ) {
     bulletArray.shift(); //removes the first element of the array
   }
+  while (
+    alienBulletArray.length > 0 &&
+    (alienBulletArray[0].used || alienBulletArray[0].y < 0)
+  ) {
+    alienBulletArray.shift(); //removes the first element of the array
+  }
 
   //next level
   if (alienCount == 0) {
@@ -152,7 +194,16 @@ function update() {
   //score
   context.fillStyle = "white";
   context.font = "16px courier";
-  context.fillText(score, 5, 20);
+  context.fillText(`score: ${score}`, 5, 20);
+
+  // life
+  context.fillStyle = "purple";
+  context.font = "30px courier";
+  let lifeArr = [];
+  for (let i = 0; i < life; i++) {
+    lifeArr.push(`♥️`);
+  }
+  context.fillText(lifeArr.join(""), 5, 50);
 }
 
 function moveShip(e) {
@@ -186,6 +237,21 @@ function createAliens() {
   alienCount = alienArray.length;
 }
 
+function alienShoot(alien) {
+  if (gameOver) {
+    return;
+  }
+
+  let bullet = {
+    x: alien.x + (alienWidth * 15) / 32,
+    y: alien.y,
+    width: tileSize / 8,
+    height: tileSize / 2,
+    used: false,
+  };
+  alienBulletArray.push(bullet);
+}
+
 function shoot(e) {
   if (gameOver) {
     return;
@@ -211,4 +277,10 @@ function detectCollision(a, b) {
     a.y < b.y + b.height && //a's top left corner doesn't reach b's bottom left corner
     a.y + a.height > b.y
   ); //a's bottom left corner passes b's top left corner
+}
+
+function setGameOverView() {
+  document.querySelector(".game-over").classList.toggle("hide");
+  document.getElementById("main-game").classList.add("hide");
+  document.getElementById("dom-score").innerText = score;
 }
