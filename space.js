@@ -15,7 +15,7 @@ document
 
 //ship
 let shipWidth = tileSize * 2;
-let shipHeight = tileSize;
+let shipHeight = tileSize * 2;
 let shipX = (tileSize * columns) / 2 - tileSize;
 let shipY = tileSize * rows - tileSize * 2;
 
@@ -61,7 +61,7 @@ window.onload = function () {
 
   //load Images
   shipImg = new Image();
-  shipImg.src = "./img/ship.png";
+  shipImg.src = "./img/Spaceship.png";
   shipImg.onload = function () {
     context.drawImage(shipImg, ship.x, ship.y, ship.width, ship.height);
   };
