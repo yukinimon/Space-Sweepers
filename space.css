@@ -19,6 +19,11 @@ body {
   line-height: 1;
   padding: 15px 25px;
   text-align: center;
+  cursor: pointer;
+  font-family: "Courier New", Courier, monospace;
+}
+#restart:hover {
+  background-color: lightgray;
 }
 html {
   background-image: url(img/space.png);
@@ -26,4 +31,16 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
+}
+h1 {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  background-color: #123456;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 15px 25px;
 }
