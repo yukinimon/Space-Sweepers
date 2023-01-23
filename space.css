@@ -4,7 +4,7 @@ body {
 }
 
 #board {
-  background-color: black;
+  background-image: url(img/Background.png);
 }
 #restart {
   display: block;
