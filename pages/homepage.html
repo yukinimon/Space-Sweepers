@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" , content="width=device-width , initial-scale=1.0">
+    <title>Space Sweepers</title>
+    <link rel="stylesheet" href="../styles/space.css">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="play">Play Music</button>
+    <div class="home">
+        <span><h1 class="title">Space<br>Sweepers</h1></span>
+        <button onclick="startGame()">Start Game</button>
+    </div>
+    <script>
+        function startGame() {
+            window.location = window.location.toString().replace(/homepage.html/, "index.html")
+        }
+    </script>
+    <script>
+        let play = document.getElementById("play");
+        function playMusic() {
+            playSound("bgm");
+        }
+        play.addEventListener("click", playMusic);
+    </script>
+    <script src="../scripts/space.js"></script>
+</body>
+
+</html>
