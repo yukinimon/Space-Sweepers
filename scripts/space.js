@@ -32,7 +32,7 @@ let shipVelocityX = tileSize; //ship moving speed
 
 //aliens
 let alienArray = [];
-let alienWidth = tileSize * 2;
+let alienWidth = tileSize;
 let alienHeight = tileSize;
 let alienX = tileSize;
 let alienY = tileSize;
@@ -66,13 +66,13 @@ window.onload = function () {
 
   //load Images
   shipImg = new Image();
-  shipImg.src = "./img/Spaceship.png";
+  shipImg.src = "../img/Spaceship.png";
   shipImg.onload = function () {
     context.drawImage(shipImg, ship.x, ship.y, ship.width, ship.height);
   };
 
   alienImg = new Image();
-  alienImg.src = "./img/alien-magenta.png";
+  alienImg.src = "../img/alien-me.png";
   createAliens();
 
   requestAnimationFrame(update);
@@ -152,7 +152,7 @@ function update() {
     let bullet = bulletArray[i];
     bullet.y += bulletVelocityY;
     context.fillStyle = "white";
-    context.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
+    context.fillRect(bullet.x, bullet.y, bullet.width, bullet.height); 
 
     //bullet collision with aliens
     for (let j = 0; j < alienArray.length; j++) {
@@ -267,6 +267,7 @@ function shoot(e) {
       used: false,
     };
     bulletArray.push(bullet);
+    playSound("shoot")
   }
 }
 
@@ -283,4 +284,22 @@ function setGameOverView() {
   document.querySelector(".game-over").classList.toggle("hide");
   document.getElementById("main-game").classList.add("hide");
   document.getElementById("dom-score").innerText = score;
+}
+
+function playSound(sound) {
+  const audio = new Audio();
+
+  switch (sound) {
+    case "bgm":
+      audio.src = "../sfx/bg-music.mp3"
+      audio.loop = true;
+      audio.play();
+      break;
+    case "shoot":
+      audio.src = "../sfx/shoot.mp3"
+      audio.play();
+      break;
+    default:
+      break;
+  }
 }

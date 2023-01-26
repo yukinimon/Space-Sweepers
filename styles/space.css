@@ -4,13 +4,15 @@ body {
 }
 
 #board {
-  background-image: url(img/Background.png);
+  background-image: url(../img/Background.png);
+  border-radius: 32px;
 }
+
 #restart {
   display: block;
   margin: 0 auto;
   margin-top: 10px;
-  background-color: grey;
+  background-color: white;
   border: 2px solid transparent;
   box-sizing: border-box;
   cursor: pointer;
@@ -22,21 +24,28 @@ body {
   cursor: pointer;
   font-family: "Courier New", Courier, monospace;
 }
+
+#restart {
+  transition-duration: 0.4s;
+}
+
 #restart:hover {
+  font-size: 1.6em;
   background-color: lightgray;
 }
+
 html {
-  background-image: url(img/space.png);
+  background-image: url(../img/space.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   min-height: 100vh;
 }
+
 h1 {
   display: block;
   margin: 0 auto;
   margin-top: 10px;
-  background-color: #123456;
   border: 2px solid transparent;
   box-sizing: border-box;
   font-size: 1rem;
@@ -54,6 +63,7 @@ h1 {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  border-radius: 32px;
 }
 
 .game-over h1 {
@@ -92,4 +102,55 @@ h1 {
 
 .hide {
   display: none;
+}
+
+button {
+  font-family: 'Courier New', Courier, monospace;
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  background-color: white;
+  border: 8px solid transparent;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 15px 25px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 1.5rem;
+  margin-bottom: 300px;
+  box-shadow: 4px 4px 14px violet;
+}
+
+button {
+  transition-duration: 0.4s;
+}
+
+button:hover {
+  font-size: 1.6em;
+  background-color: lightgrey;
+}
+
+.home {
+  background-color: black;
+  width: 750px;
+  height: 750px;
+  margin: 0 auto;
+  border-radius: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.title {
+  text-align: center;
+  color: #fff;
+  font-family: "Courier New";
+  font-size: 7rem;
+  text-transform: uppercase;
+  text-shadow: 4px 4px 14px violet;
+  letter-spacing: -0.5rem;
 }

@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" , content="width=device-width , initial-scale=1.0">
-    <title>Space Invaders</title>
-    <link rel="stylesheet" href="space.css">
+    <title>Space Sweepers</title>
+    <link rel="stylesheet" href="../styles/space.css">
 </head>
 
 <body>
-    <h1>Space Invaders</h1>
+    <button id="play">Play Music</button>
     <div id="main-game" class="">
         <canvas id="board"></canvas>
     </div>
@@ -21,7 +21,14 @@
         </div>
     </div>
     <button id="restart">Restart</button>
-    <script src="space.js">
+    <script>
+        let play = document.getElementById("play");
+        function playMusic() {
+            playSound("bgm");
+        }
+        play.addEventListener("click", playMusic);
+    </script>
+    <script src="../scripts/space.js">
     </script>
 </body>
 
