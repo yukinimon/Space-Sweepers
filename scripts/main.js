@@ -1,83 +1,11 @@
-//board
-let tileSize = 32;
-let rows = 16;
-let columns = 16;
-
-let board;
-let boardWidth = tileSize * columns; // 32 * 16
-let boardHeight = tileSize * rows; // 32 * 16
-let context;
-
-//restart button
-document
-  .getElementById("restart")
-  .addEventListener("click", () => window.location.reload());
-
-//ship
-let shipWidth = tileSize * 2;
-let shipHeight = tileSize * 2;
-let shipX = (tileSize * columns) / 2 - tileSize;
-let shipY = tileSize * rows - tileSize * 2;
-
-let ship = {
-  x: shipX,
-  y: shipY,
-  width: shipWidth,
-  height: shipHeight,
-};
-let life = 3;
-
-let shipImg;
-let shipVelocityX = tileSize; //ship moving speed
-
-//aliens
-let alienArray = [];
-let alienWidth = tileSize;
-let alienHeight = tileSize;
-let alienX = tileSize;
-let alienY = tileSize;
-let alienImg;
-let alienShootingTimer = 100;
-
-let alienRows = 2;
-let alienColumns = 3;
-let alienCount = 0; //number of alien to defeat
-let alienVelocityX = 1; //alien moving speed
-
-//bullets
-let bulletArray = [];
-let bulletVelocityY = -10; //bullet moving speed
-
-// alien bullets
-let alienBulletArray = [];
-
-let score = 0;
-let gameOver = false;
-
 window.onload = function () {
-  board = document.getElementById("board");
-  board.width = boardWidth;
-  board.height = boardHeight;
-  context = board.getContext("2d"); //used for drawing on the board
+  setupBoard();
 
-  //draw initial ship
-  //context.fillStyle="green";
-  //context.fillRect(ship.x, ship.y, ship.width, ship.height);
-
-  //load Images
-  shipImg = new Image();
-  shipImg.src = "../img/Spaceship.png";
-  shipImg.onload = function () {
-    context.drawImage(shipImg, ship.x, ship.y, ship.width, ship.height);
-  };
-
-  alienImg = new Image();
-  alienImg.src = "../img/alien-me.png";
-  createAliens();
-
-  requestAnimationFrame(update);
+  // EVENTS
   document.addEventListener("keydown", moveShip);
   document.addEventListener("keyup", shoot);
+
+  requestAnimationFrame(update);
 };
 
 function update() {
@@ -152,7 +80,7 @@ function update() {
     let bullet = bulletArray[i];
     bullet.y += bulletVelocityY;
     context.fillStyle = "white";
-    context.fillRect(bullet.x, bullet.y, bullet.width, bullet.height); 
+    context.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
 
     //bullet collision with aliens
     for (let j = 0; j < alienArray.length; j++) {
@@ -220,6 +148,23 @@ function moveShip(e) {
   }
 }
 
+function setupBoard() {
+  // initialize board
+  board.width = boardWidth;
+  board.height = boardHeight;
+
+  //load Images
+  shipImg = new Image();
+  shipImg.src = "../img/Spaceship.png";
+  shipImg.onload = function () {
+    context.drawImage(shipImg, ship.x, ship.y, ship.width, ship.height);
+  };
+
+  alienImg = new Image();
+  alienImg.src = "../img/alien-me.png";
+  createAliens();
+}
+
 function createAliens() {
   for (let c = 0; c < alienColumns; c++) {
     for (let r = 0; r < alienRows; r++) {
@@ -267,7 +212,7 @@ function shoot(e) {
       used: false,
     };
     bulletArray.push(bullet);
-    playSound("shoot")
+    playSound("shoot");
   }
 }
 
@@ -278,28 +223,4 @@ function detectCollision(a, b) {
     a.y < b.y + b.height && //a's top left corner doesn't reach b's bottom left corner
     a.y + a.height > b.y
   ); //a's bottom left corner passes b's top left corner
-}
-
-function setGameOverView() {
-  document.querySelector(".game-over").classList.toggle("hide");
-  document.getElementById("main-game").classList.add("hide");
-  document.getElementById("dom-score").innerText = score;
-}
-
-function playSound(sound) {
-  const audio = new Audio();
-
-  switch (sound) {
-    case "bgm":
-      audio.src = "../sfx/bg-music.mp3"
-      audio.loop = true;
-      audio.play();
-      break;
-    case "shoot":
-      audio.src = "../sfx/shoot.mp3"
-      audio.play();
-      break;
-    default:
-      break;
-  }
 }
