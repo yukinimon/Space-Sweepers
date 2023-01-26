@@ -66,6 +66,7 @@ function update() {
     if (!bullet.used && detectCollision(bullet, ship)) {
       bullet.used = true;
       life -= 1;
+      playSound("hitSound");
 
       if (life <= 0) {
         gameOver = true;

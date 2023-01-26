@@ -2,6 +2,11 @@ function setGameOverView() {
   document.querySelector(".game-over").classList.toggle("hide");
   document.getElementById("main-game").classList.add("hide");
   document.getElementById("dom-score").innerText = score;
+  if (bgmAudio) {
+    bgmAudio.pause()
+    bgmAudio.currentTime = 0
+  }
+  playSound("gameOver");
 }
 
 function playSound(sound) {
@@ -9,12 +14,22 @@ function playSound(sound) {
 
   switch (sound) {
     case "bgm":
-      audio.src = "../sfx/bg-music.mp3";
-      audio.loop = true;
-      audio.play();
+      const bgm = new Audio();
+      bgm.src = "../sfx/bg-music.mp3";
+      bgm.loop = true;
+      bgm.play();
+      bgmAudio = bgm
       break;
     case "shoot":
       audio.src = "../sfx/shoot.mp3";
+      audio.play();
+      break;
+    case "gameOver":
+      audio.src = "../sfx/game_over-sound.mp3"
+      audio.play();
+      break;
+    case "hitSound":
+      audio.src = "../sfx/hit-sound.mp3"
       audio.play();
       break;
     default:

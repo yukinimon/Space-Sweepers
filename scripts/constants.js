@@ -1,5 +1,6 @@
 // game state
 let backgroundMusicPlaying = false;
+let bgmAudio
 let score = 0;
 let gameOver = false;
 
