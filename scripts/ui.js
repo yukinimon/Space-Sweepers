@@ -3,33 +3,39 @@ function setGameOverView() {
   document.getElementById("main-game").classList.add("hide");
   document.getElementById("dom-score").innerText = score;
   if (bgmAudio) {
-    bgmAudio.pause()
-    bgmAudio.currentTime = 0
+    bgmAudio.pause();
+    bgmAudio.currentTime = 0;
   }
   playSound("gameOver");
 }
 
 function playSound(sound) {
   const audio = new Audio();
+  audio.crossOrigin = "anonymous";
 
   switch (sound) {
     case "bgm":
       const bgm = new Audio();
-      bgm.src = "../sfx/bg-music.mp3";
+      bgm.crossOrigin = "anonymous";
+      bgm.src =
+        "https://github.com/yukinimon/Space-Invaders/blob/30e9dfd1f13e3748aed035db615ca95bf185afc7/sfx/bg-music.mp3?raw=true";
       bgm.loop = true;
       bgm.play();
-      bgmAudio = bgm
+      bgmAudio = bgm;
       break;
     case "shoot":
-      audio.src = "../sfx/shoot.mp3";
+      audio.src =
+        "https://github.com/yukinimon/Space-Invaders/blob/30e9dfd1f13e3748aed035db615ca95bf185afc7/sfx/shoot.mp3?raw=true";
       audio.play();
       break;
     case "gameOver":
-      audio.src = "../sfx/game_over-sound.mp3"
+      audio.src =
+        "https://github.com/yukinimon/Space-Invaders/blob/30e9dfd1f13e3748aed035db615ca95bf185afc7/sfx/game_over-sound.mp3?raw=true";
       audio.play();
       break;
     case "hitSound":
-      audio.src = "../sfx/hit-sound.mp3"
+      audio.src =
+        "https://github.com/yukinimon/Space-Invaders/blob/30e9dfd1f13e3748aed035db615ca95bf185afc7/sfx/hit-sound.mp3?raw=true";
       audio.play();
       break;
     default:
