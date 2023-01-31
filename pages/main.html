@@ -7,23 +7,21 @@
     <title>Space Sweepers</title>
     <link rel="shortcut icon" type="image/png" href="../img/alien-me.png">
     <link rel="stylesheet" href="../styles/space.css">
-    <style>
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-        }
-    </style>
 </head>
 
 <body>
-    <div class="home">
-        <span>
-            <h1 class="title">Space<br>Sweepers</h1>
-        </span>
-        <button class="startButton" onclick="startGame()">Start Game</button>
+    <button id="play">🎵</button>
+    <div id="main-game" class="">
+        <canvas id="board"></canvas>
     </div>
+
+    <div class="game-over hide">
+        <h1>GAME OVER</h1>
+        <div>
+            <p>your score: <span id="dom-score">30000</span></p>
+        </div>
+    </div>
+    <button id="restart">Restart</button>
     <script src="../scripts/constants.js"></script>
     <script src="../scripts/ui.js"></script>
     <script src="../scripts/main.js"></script>

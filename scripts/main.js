@@ -88,8 +88,7 @@ function update() {
       let alien = alienArray[j];
       if (!bullet.used && alien.alive && detectCollision(bullet, alien)) {
         bullet.used = true;
-        alien.alive = false;
-        alienCount--;
+        alien.alive = false;        alienCount--;
         score += 100;
       }
     }

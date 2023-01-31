@@ -40,7 +40,7 @@ function playSound(sound) {
 function startGame() {
   window.location = window.location
     .toString()
-    .replace(/homepage.html/, "index.html");
+    .replace(/index.html/, "main.html");
 }
 
 //restart button
