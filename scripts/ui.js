@@ -17,25 +17,21 @@ function playSound(sound) {
     case "bgm":
       const bgm = new Audio();
       bgm.crossOrigin = "anonymous";
-      bgm.src =
-        "https://github.com/yukinimon/Space-Invaders/blob/30e9dfd1f13e3748aed035db615ca95bf185afc7/sfx/bg-music.mp3?raw=true";
+      bgm.src = "../sfx/bg-music.mp3";
       bgm.loop = true;
       bgm.play();
       bgmAudio = bgm;
       break;
     case "shoot":
-      audio.src =
-        "https://github.com/yukinimon/Space-Invaders/blob/30e9dfd1f13e3748aed035db615ca95bf185afc7/sfx/shoot.mp3?raw=true";
+      audio.src = "../sfx/shoot.mp3";
       audio.play();
       break;
     case "gameOver":
-      audio.src =
-        "https://github.com/yukinimon/Space-Invaders/blob/30e9dfd1f13e3748aed035db615ca95bf185afc7/sfx/game_over-sound.mp3?raw=true";
+      audio.src = "../sfx/game_over-sound.mp3";
       audio.play();
       break;
     case "hitSound":
-      audio.src =
-        "https://github.com/yukinimon/Space-Invaders/blob/30e9dfd1f13e3748aed035db615ca95bf185afc7/sfx/hit-sound.mp3?raw=true";
+      audio.src = "../sfx/hit-sound.mp3";
       audio.play();
       break;
     default:
@@ -44,9 +40,8 @@ function playSound(sound) {
 }
 
 function startGame() {
-  window.location = window.location
-    .toString()
-    .replace(/index.html/, "main.html");
+  window.location.href =
+    "http://yukinimon-space-sweepers.s3-website-us-east-1.amazonaws.com/main.html";
 }
 
 //restart button
